@@ -32,14 +32,40 @@ def translate(word):
 	else:
 		return "Word does not exist in this dictionary, please try another word."
 
-# will ask the user to input a word and it will be stored in the variable called word
-word = input("Enter a word that you want a definition for: ") 
+def start():
+	# will ask the user to input a word and it will be stored in the variable called word
+	word = input("Enter a word that you want a definition for: ") 
 
-# variable to hold the output of our translate function
-output = translate(word) # if word = "hello", it will return ['Expression of greeting used by two or more people who meet each other.']
+	# variable to hold the output of our translate function
+	output = translate(word) # if word = "hello", it will return ['Expression of greeting used by two or more people who meet each other.']
 
-if type(output) == list:
-	for i, definition in enumerate(output):
-		print(str(i + 1) + ".) " + definition)
+	# if the output is a list of more than one definition, iterate through that list and print each definition one at a time
+	if type(output) == list:
+		for i, definition in enumerate(output):
+			print(str(i + 1) + ".) " + definition)
+	# otherwise print the one definition
+	else:
+		print(output)
+
+start()
+
+go = True
+
+# as long as go = True, keep asking the user if want to search for another definition or not
+while(go):
+	playAgain = input("Would you like to search up another definition? Type Y for yes or N for no: ")
+	playAgain = playAgain.lower()
+
+	# if they say yes run the questions again. If not, then close the while loop and say goodbye to the user
+	if playAgain == "" or playAgain[0] == 'y':
+		start()
+	else: 
+		go = False
+		print("Thank you for using this interactive app, goodbye.")
+
+
+
+
+
 
 
